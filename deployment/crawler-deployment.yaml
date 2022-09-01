@@ -27,10 +27,27 @@ spec:
             - monocle
             - crawler
           env:
+            - name: MONOCLE_CONFIG
+              value: /etc/monocle/config.yaml
+            - name: MONOCLE_PUBLIC_URL
+              value: http://api:8080
             - name: CONFIG
               value: /etc/monocle/config.yaml
+            - name: GITHUB_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: github-secret
+                  key: GITHUB_TOKEN
+            - name: crawler-token
+              valueFrom:
+                secretKeyRef:
+                  name: crawler-secret
+                  key: CRAWLERS_API_KEY
             - name: CHANGE_ME
-              value: change-me
+              valueFrom:
+                secretKeyRef:
+                  name: crawler-secret
+                  key: CHANGE_ME
           image: quay.io/change-metrics/monocle:latest
           name: crawler
           resources: {}

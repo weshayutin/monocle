@@ -1,0 +1,29 @@
+ oc get secrets -n monocle | grep secret
+crawler-secret             Opaque                                2      71m
+github-secret              Opaque                                1      4h
+
+Name:         github-secret
+Namespace:    monocle
+Labels:       <none>
+Annotations:  <none>
+
+Type:  Opaque
+
+Data
+====
+GITHUB_TOKEN:  40 bytes
+
+
+[whayutin@thinkdoe monocle]$ oc describe secret crawler-secret
+Name:         crawler-secret
+Namespace:    monocle
+Labels:       <none>
+Annotations:  <none>
+
+Type:  Opaque
+
+Data
+====
+CHANGE_ME:         36 bytes
+CRAWLERS_API_KEY:  36 bytes
+

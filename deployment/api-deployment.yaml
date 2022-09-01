@@ -31,8 +31,24 @@ spec:
               value: /etc/monocle/config.yaml
             - name: MONOCLE_ELASTIC_URL
               value: http://elastic:9200
+            - name: MONOCLE_PUBLIC_URL
+              value: http://api-monocle.mycluster-dal10-b3-488804-3626522b15eedb880d7b99992e225c1b-0000.us-south.containers.appdomain.cloud
             - name: CHANGE_ME
-              value: change_me # done as the value in ./monocle-config.yaml requires an envvar by the name CHANGE_ME to exist
+              valueFrom:
+                secretKeyRef:
+                  name: crawler-secret
+                  key: CHANGE_ME
+            - name: GITHUB_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: github-secret
+                  key: GITHUB_TOKEN
+            - name: crawler-token
+              valueFrom:
+                secretKeyRef:
+                  name: crawler-secret
+                  key: CRAWLERS_API_KEY
+
           image: quay.io/change-metrics/monocle:latest
           livenessProbe:
             httpGet:
