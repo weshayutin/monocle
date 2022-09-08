@@ -26,9 +26,9 @@ data:
                 - velero-plugin-for-microsoft-azure
                 - velero-plugin-for-csi
             update_since: '2022-06-01'
-          - name: konveyor
+          - name: migtools
             provider:
-              github_organization: konveyor
+              github_organization: migtools
               github_repositories:
                 - volume-snapshot-mover
             update_since: '2022-06-01'
@@ -38,4 +38,35 @@ data:
               github_repositories:
                 - kubevirt-velero-plugin
             update_since: '2022-06-01'
- 
+        projects:
+          - name: oadp-operator
+            repository_regex: ".*oadp-operator.*"
+          - name: redhat-velero
+            repository_regex: ".*velero.*"
+          - name: mig-all
+            repository_regex: ".*velero.*|.*oadp-operator.*|.*volume-snapshot-mover.*"
+      - name: upstream_velero
+        crawlers_api_key: CHANGE_ME
+        crawlers:
+          - name: upstream_velero
+            provider:
+              github_organization: vmware-tanzu
+              github_repositories:
+                - velero
+                - velero-plugin-for-aws
+                - velero-plugin-for-gcp
+                - velero-plugin-for-microsoft-azure
+                - velero-plugin-for-csi
+            update_since: '2022-06-01'
+      - name: pelorus
+        crawlers_api_key: CHANGE_ME
+        crawlers:
+          - name: pelorus
+            provider:
+              github_organization: konveyor
+              github_repositories:
+                - pelorus
+            update_since: '2022-01-01'
+        projects:
+          - name: pelorus
+            repository_regex: ".*pelorus.*"
